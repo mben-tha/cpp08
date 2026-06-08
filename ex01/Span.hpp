@@ -7,12 +7,12 @@ class	Span
 {
 public:
 	Span(unsigned int N);
-	// Span(Span const &copy);
-	// ~Span();
-	// Span&	operator=(Span const &copy);
+	Span(Span const &copy);
+	~Span();
+	Span&	operator=(Span const &copy);
 
 	void		addNumber(int n);
-	int			shortestSpan();
+	int			shortestSpan() const;
 	int			longestSpan() const;
 
 private:

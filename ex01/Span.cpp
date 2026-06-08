@@ -5,6 +5,23 @@
 
 Span::Span(unsigned int N) : m_N(N) {}
 
+Span::Span(Span const& copy) : m_N(copy.m_N)
+{
+	m_tab = copy.m_tab;
+}
+
+Span::~Span() {}
+
+Span&	Span::operator=(Span const& copy)
+{
+	if (this != &copy)
+	{
+		m_N = copy.m_N;
+		m_tab = copy.m_tab;
+	}
+	return (*this);
+}
+
 void	Span::addNumber(int n)
 {
 	if (m_tab.size() == m_N)
@@ -12,11 +29,22 @@ void	Span::addNumber(int n)
 	m_tab.push_back(n);
 }
 
-int	Span::shortestSpan()
+int	Span::shortestSpan() const
 {
 	if (m_tab.size() < 2)
 		throw (std::logic_error("Error : Not enough numbers to find a span"));
 	
+	std::vector<int>	copy(m_tab);
+
+	std::sort(copy.begin(), copy.end());
+	int min = copy[1] - copy[0];
+
+	for (unsigned int i = 0; i < copy.size() - 1; i++)
+	{
+		if (i+1 != copy.size() && copy[i+1] - copy[i] < min)
+			min = copy[i+1] - copy[i];
+	}
+	return  (min);
 }
 
 int Span::longestSpan() const
