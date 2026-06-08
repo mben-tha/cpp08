@@ -41,7 +41,7 @@ int	Span::shortestSpan() const
 
 	for (unsigned int i = 0; i < copy.size() - 1; i++)
 	{
-		if (i+1 != copy.size() && copy[i+1] - copy[i] < min)
+		if (copy[i+1] - copy[i] < min)
 			min = copy[i+1] - copy[i];
 	}
 	return  (min);
